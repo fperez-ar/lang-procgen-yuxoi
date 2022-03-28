@@ -1,0 +1,26 @@
+- word: write
+  def: verb
+- word: eat
+  def: verb
+- word: read
+  def: verb
+- word: Iuri Hoi
+  def: noun
+- word: Yasunari Kawabata
+  def: noun
+- word: i
+  def: noun
+- word: it
+  def: noun
+- word: he
+  def: noun
+- word: she
+  def: noun
+- word: they
+  def: noun
+- word: pizza
+  def: noun
+- word: book
+  def: noun
+- word: newspaper
+  def: noun
