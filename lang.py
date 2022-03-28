@@ -7,7 +7,7 @@ from random import choice, randint
 def _filter_by(dictionary, filter_attr):
     return list(filter(lambda x: filter_attr in x['def'].lower(), dictionary))
 
-def gen_word(word_order, dictionary):
+def gen_sentence(word_order, dictionary):
     _verbs = _filter_by(dictionary, 'verb')
     _nouns = _filter_by(dictionary, 'noun')
     _map = {
@@ -16,14 +16,14 @@ def gen_word(word_order, dictionary):
         'o': lambda: choice(_nouns),
     }
 
-    word = ''
-    definitions = []
+    _sentence = ''
+    _definitions = []
     for func_code in word_order:
         elem = _map[func_code]()
-        word += elem['word'] + ' '
-        definitions.append(elem['def'])
+        _sentence += elem['word'] + ' '
+        _definitions.append(elem['def'])
 
-    return word, definitions
+    return _sentence, _definitions
 
 lang = 'example'
 
@@ -33,12 +33,10 @@ with open(f'{lang}/example.yaml') as yaml_file:
 with open(f'{lang}/config.yaml') as yaml_file:
     cfg = yaml.load(yaml_file, Loader=yaml.FullLoader)
 
-print(cfg)
 if not 'word-order' in cfg or len(cfg['word-order']) == 0:
     raise Exception(f'no \'word order\' specified in {lang}/config.yaml')
 
 wo = choice(cfg['word-order']) if len(cfg['word-order']) > 0 else cfg['word-order'][0]
-word, definitions = gen_word(wo, dictionary)
+sentence, definitions = gen_sentence(wo, dictionary)
 print('word order:', wo)
-print('word:', word)
-# print('definitions:', definitions)
+print('sentence:', sentence)
